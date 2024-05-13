@@ -8,8 +8,6 @@ from src.two_samples_tests import (
 )
 from src.one_sample_tests import ShapiroWilkTest
 
-# mocking data
-
 # Parametric central tendancy test (assumption: samples have the same variance)
 sample1 = np.random.normal(loc=10, scale=3, size=100)
 sample2 = np.random.normal(loc=9.3, scale=3, size=100)
