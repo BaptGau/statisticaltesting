@@ -37,7 +37,7 @@ def __kde_plotter(x: ArrayLike, y: ArrayLike, ax, **kwargs) -> None:
     ax.set_title(f"Kernel Density Estimations", fontweight="bold")
     ax.set_xlabel("Data", fontweight="bold")
     ax.set_ylabel("Density", fontweight="bold")
-    ax.legend()
+    ax.legend(loc="upper right")
     ax.grid(True)
     mpl.add_gradient_fill(ax=ax, alpha_gradientglow=0.3)
 
@@ -52,8 +52,14 @@ def __violin_plotter(x: ArrayLike, y: ArrayLike, ax, **kwargs) -> None:
     ax.set_xticks(
         [y + 1 for y in range(2)],
         labels=[
-            rf"{x_name} | $|\sigma:$" + f"{np.std(x):.2f}",
-            f"{y_name} | $|\sigma:$" + f"{np.std(y):.2f}",
+            rf"{x_name} • $\sigma_x: {np.std(x):.2f}"
+            + " • "
+            + r"\tilde{x}"
+            + f": {np.median(x):.2f}$",
+            rf"{y_name} • $\sigma_y: {np.std(y):.2f}"
+            + " • "
+            + r"\tilde{y}"
+            + f": {np.median(y):.2f}$",
         ],
         fontweight="bold",
     )
