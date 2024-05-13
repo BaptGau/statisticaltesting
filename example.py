@@ -9,12 +9,17 @@ from src.two_samples_tests import (
 from src.one_sample_tests import ShapiroWilkTest
 
 # mocking data
-sample1 = np.random.gamma(shape=5, scale=10, size=500)
-sample2 = np.random.gamma(shape=3, scale=12, size=500)
 
 # Parametric central tendancy test (assumption: samples have the same variance)
+sample1 = np.random.normal(loc=10, scale=3, size=100)
+sample2 = np.random.normal(loc=9.3, scale=3, size=100)
+
 tester = StudentTest()
-tester.fit(sample1, sample2, plot_results=True)
+tester.fit(
+    np.random.normal(loc=10, scale=3, size=100),
+    np.random.normal(loc=9.3, scale=4.5, size=100),
+    plot_results=True,
+)
 print(tester.params)
 
 # Non-parametric central tendancy test
@@ -23,6 +28,9 @@ tester.fit(sample1, sample2, plot_results=True)
 print(tester.params)
 
 # Non-parametric dispersion test
+sample1 = np.random.gamma(shape=5, scale=10, size=100)
+sample2 = np.random.gamma(shape=3, scale=12, size=100)
+
 tester = LeveneTest()
 tester.fit(sample1, sample2, plot_results=True)
 print(tester.params)
